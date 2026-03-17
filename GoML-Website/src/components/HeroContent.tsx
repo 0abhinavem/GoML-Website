@@ -58,7 +58,7 @@ const HeroContent = () => {
           </Link>
           <a href="#contact">
             <button className="px-7 py-3 rounded-full text-sm font-medium glass-effect text-foreground hover:bg-[hsl(var(--glass-strong))] transition-colors">
-              TRY OUR AI
+              Try Our AI
             </button>
           </a>
         </motion.div>
