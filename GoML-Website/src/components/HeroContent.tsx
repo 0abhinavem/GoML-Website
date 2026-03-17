@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import HeroBadges from "./HeroBadges";
+import { SpecialText } from "./ui/special-text";
 
 const HeroContent = () => {
   return (
@@ -14,9 +15,23 @@ const HeroContent = () => {
           transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
           className="font-display text-6xl md:text-[80px] font-bold leading-[0.95] tracking-tight gradient-text"
         >
-          Where Innovation
+          <SpecialText
+            inView={true}
+            delay={0.5}
+            speed={25}
+            className="text-6xl md:text-[80px] font-bold leading-[0.95] tracking-tight"
+          >
+            Where Innovation
+          </SpecialText>
           <br />
-          Meets Execution
+          <SpecialText
+            inView={true}
+            delay={1.2}
+            speed={25}
+            className="text-6xl md:text-[80px] font-bold leading-[0.95] tracking-tight"
+          >
+            Meets Execution
+          </SpecialText>
         </motion.h1>
 
         <motion.p
@@ -43,7 +58,7 @@ const HeroContent = () => {
           </Link>
           <a href="#contact">
             <button className="px-7 py-3 rounded-full text-sm font-medium glass-effect text-foreground hover:bg-[hsl(var(--glass-strong))] transition-colors">
-              Let's Get Connected
+              TRY OUR AI
             </button>
           </a>
         </motion.div>

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SearchComponent from "./ui/animated-glowing-search-bar";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { GradientButton } from "./ui/gradient-button";
 import { LimelightNav } from "./ui/limelight-nav";
 
 const navLinks = [
@@ -35,23 +35,15 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-3">
             <Link to="/signin">
-              <HoverBorderGradient
-                containerClassName="rounded-full"
-                as="div"
-                className="bg-black text-white flex items-center space-x-2 text-sm px-5 py-2 font-display font-medium"
-              >
-                <span>Sign In</span>
-              </HoverBorderGradient>
+              <GradientButton className="rounded-full min-w-0 px-5 py-2 text-sm font-display font-medium">
+                Sign In
+              </GradientButton>
             </Link>
-          <Link to="/signup">
-            <HoverBorderGradient
-              containerClassName="rounded-full"
-              as="div"
-              className="bg-white text-black flex items-center space-x-2 text-sm px-5 py-2 font-display font-medium"
-            >
-              <span>Sign Up</span>
-            </HoverBorderGradient>
-          </Link>
+            <Link to="/signup">
+              <GradientButton variant="variant" className="rounded-full min-w-0 px-5 py-2 text-sm font-display font-medium">
+                Sign Up
+              </GradientButton>
+            </Link>
           </div>
         </div>
       </div>
