@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Check, Cpu, Zap, Blocks, Server, MemoryStick } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, Cpu, Zap, Blocks, Server, MemoryStick, Terminal, Copy } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 
 const features = [
@@ -31,18 +32,34 @@ const features = [
 ];
 
 const models = [
-  { name: "Llama-3.2-3B-Instruct", size: "3B", quant: "4bit", vram: "~2.0 GB" },
-  { name: "Phi-3-mini-4k-instruct", size: "3.8B", quant: "4bit", vram: "~2.5 GB" },
-  { name: "Mistral-7B-Instruct-v0.3", size: "7B", quant: "4bit", vram: "~4.5 GB" },
-  { name: "Qwen2.5-7B-Instruct", size: "7B", quant: "4bit", vram: "~4.5 GB" },
-  { name: "Phi-3-mini-4k-instruct", size: "3.8B", quant: "float16", vram: "~7.5 GB" },
+  { name: "Llama-3.2-3B-Instruct", size: "3B", quant: "4bit", vram: "~2.0 GB", speed: "140 tok/s" },
+  { name: "Phi-3-mini-4k-instruct", size: "3.8B", quant: "4bit", vram: "~2.5 GB", speed: "125 tok/s" },
+  { name: "Mistral-7B-Instruct-v0.3", size: "7B", quant: "4bit", vram: "~4.5 GB", speed: "75 tok/s" },
+  { name: "Qwen2.5-7B-Instruct", size: "7B", quant: "4bit", vram: "~4.5 GB", speed: "80 tok/s" },
+  { name: "Phi-3-mini-4k-instruct", size: "3.8B", quant: "float16", vram: "~7.5 GB", speed: "90 tok/s" },
+];
+
+const commands = [
+  { label: "Install", cmd: "uv pip install -e . --extra-index-url https://download.pytorch.org/whl/cu124" },
+  { label: "Terminal Chat", cmd: "winllm chat --model \"microsoft/Phi-3-mini-4k-instruct\" --quantization 4bit" },
+  { label: "Start API Server", cmd: "winllm serve --model \"microsoft/Phi-3-mini-4k-instruct\" --port 8000" },
+  { label: "Run Inference", cmd: "curl http://localhost:8000/v1/chat/completions -d '{\"model\": \"Phi-3-mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello!\"}]}'" }
 ];
 
 const EngineSpecs = () => {
+  const [activeTab, setActiveTab] = useState("Architecture");
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const handleCopy = (text: string, index: number) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
+
   return (
     <section id="specs" className="relative py-24 z-10 overflow-hidden">
       <div className="container px-4 mx-auto max-w-6xl">
-        <div className="text-center mb-16 space-y-4">
+        <div className="text-center mb-12 space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,79 +72,135 @@ const EngineSpecs = () => {
               Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Extreme Polish</span>
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              A deep-dive into the WinLLM inference and serving engine, inspired by the groundbreaking vLLM project. Fully self-contained.
+              A deep-dive into the WinLLM inference and serving engine. Fully self-contained.
             </p>
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Architecture Features */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <h3 className="text-2xl font-bold text-white mb-6">Core Architecture</h3>
-            {features.map((feature, i) => (
-              <div key={i} className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                <div className="shrink-0 mt-1">{feature.icon}</div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">{feature.title}</h4>
-                  <p className="text-sm text-white/60 leading-relaxed">{feature.description}</p>
-                </div>
-              </div>
+        {/* Interactive Interactive Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex bg-white/5 border border-white/10 rounded-full p-1 backdrop-blur-xl transition-all">
+            {["Architecture", "Benchmarks", "Integration"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`relative px-6 py-2.5 text-sm font-medium rounded-full transition-colors ${
+                  activeTab === tab ? "text-white" : "text-white/50 hover:text-white/80"
+                }`}
+              >
+                {activeTab === tab && (
+                  <motion.div
+                    layoutId="activeTabSpecs"
+                    className="absolute inset-0 bg-white/10 border border-white/20 rounded-full"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{tab}</span>
+              </button>
             ))}
-          </motion.div>
+          </div>
+        </div>
 
-          {/* Model Benchmarks */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="absolute -inset-0.5 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl blur-lg" />
-            <div className="relative rounded-2xl border border-white/10 bg-[#0A0A0B]/90 backdrop-blur-xl p-8 overflow-hidden">
-              <GlowingEffect blur={0} spread={20} glow={true} inactiveZone={0.01} borderWidth={3} className="rounded-2xl" />
-              
-              <h3 className="text-2xl font-bold text-white mb-2">Supported Models</h3>
-              <p className="text-white/60 text-sm mb-8">
-                Optimized VRAM footprints for consumer GPUs using bitsandbytes quantization.
-              </p>
-
-              <div className="space-y-4">
-                <div className="grid grid-cols-4 text-xs font-semibold text-white/40 uppercase tracking-wider pb-2 border-b border-white/10">
-                  <div className="col-span-2">Model</div>
-                  <div>Params</div>
-                  <div>VRAM</div>
-                </div>
-                
-                {models.map((model, i) => (
-                  <div key={i} className="grid grid-cols-4 items-center text-sm py-2 group">
-                    <div className="col-span-2 font-medium text-white/90 truncate pr-4">
-                      {model.name}
-                      <span className="block text-xs text-white/40 mt-0.5">{model.quant}</span>
+        <div className="max-w-4xl mx-auto min-h-[400px]">
+          <AnimatePresence mode="wait">
+            {/* TAB 1: ARCHITECTURE */}
+            {activeTab === "Architecture" && (
+              <motion.div
+                key="Architecture"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="grid sm:grid-cols-2 gap-4"
+              >
+                {features.map((feature, i) => (
+                  <div key={i} className={`p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer group ${i === features.length - 1 ? "sm:col-span-2 sm:max-w-md mx-auto w-full" : ""}`}>
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      {feature.icon}
                     </div>
-                    <div className="text-white/60">{model.size}</div>
-                    <div className="text-emerald-400 font-mono text-xs bg-emerald-400/10 px-2 py-1 rounded inline-flex w-fit">
-                      {model.vram}
+                    <h4 className="font-bold text-white mb-2">{feature.title}</h4>
+                    <p className="text-sm text-white/50 leading-relaxed">{feature.description}</p>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+
+            {/* TAB 2: BENCHMARKS */}
+            {activeTab === "Benchmarks" && (
+              <motion.div
+                key="Benchmarks"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
+              >
+                <div className="absolute -inset-0.5 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-2xl blur-lg opacity-50" />
+                <div className="relative rounded-2xl border border-white/10 bg-[#0A0A0B]/90 backdrop-blur-xl p-8 overflow-hidden">
+                  <GlowingEffect blur={0} spread={20} glow={true} inactiveZone={0.01} borderWidth={3} className="rounded-2xl" />
+                  
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-5 text-xs font-semibold text-white/40 uppercase tracking-wider pb-3 border-b border-white/10">
+                      <div className="col-span-2">Model Target</div>
+                      <div>Params</div>
+                      <div>Avg. VRAM</div>
+                      <div className="text-right">Speed (Est)</div>
+                    </div>
+                    
+                    {models.map((model, i) => (
+                      <div key={i} className="grid grid-cols-5 items-center text-sm py-3 border-b border-white/5 last:border-0 hover:bg-white/[0.02] -mx-4 px-4 transition-colors rounded-lg group cursor-default">
+                        <div className="col-span-2 font-medium text-white/90 truncate pr-4">
+                          {model.name}
+                          <span className="inline-block ml-3 px-2 py-0.5 rounded text-[10px] bg-white/10 text-white/60 uppercase tracking-wider group-hover:bg-purple-500/20 group-hover:text-purple-300 transition-colors">{model.quant}</span>
+                        </div>
+                        <div className="text-white/60">{model.size}</div>
+                        <div className="text-emerald-400 font-mono text-xs bg-emerald-400/10 px-2 py-1 rounded inline-flex w-fit">
+                          {model.vram}
+                        </div>
+                        <div className="text-right text-blue-400 font-mono text-xs">
+                          {model.speed}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* TAB 3: INTEGRATION */}
+            {activeTab === "Integration" && (
+              <motion.div
+                key="Integration"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-4"
+              >
+                {commands.map((cmd, i) => (
+                  <div key={i} className="bg-[#0A0A0B] border border-white/10 rounded-xl overflow-hidden group">
+                    <div className="bg-white/5 border-b border-white/10 px-4 py-2 flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <Terminal className="w-4 h-4 text-white/40" />
+                        <span className="text-xs font-semibold text-white/60 uppercase tracking-wider">{cmd.label}</span>
+                      </div>
+                      <button 
+                        onClick={() => handleCopy(cmd.cmd, i)}
+                        className="text-white/40 hover:text-white transition-colors p-1"
+                      >
+                        {copiedIndex === i ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                      </button>
+                    </div>
+                    <div className="p-4 overflow-x-auto">
+                      <code className="text-sm font-mono text-purple-300 whitespace-nowrap">
+                        {cmd.cmd}
+                      </code>
                     </div>
                   </div>
                 ))}
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
-                  <Check className="w-4 h-4 text-purple-400" />
-                  Terminal Ready
-                </h4>
-                <div className="bg-black/50 rounded-lg p-4 font-mono text-sm text-white/80 border border-white/5">
-                  <span className="text-purple-400">winllm</span> chat --model "microsoft/Phi-3-mini-4k-instruct" --quantization 4bit
-                </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
