@@ -56,11 +56,11 @@ const HeroContent = () => {
               Get Started for Free
             </button>
           </Link>
-          <a href="#contact">
+          <Link to="/chat">
             <button className="px-7 py-3 rounded-full text-sm font-medium glass-effect text-foreground hover:bg-[hsl(var(--glass-strong))] transition-colors">
               Try Our AI
             </button>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>
