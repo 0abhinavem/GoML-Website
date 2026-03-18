@@ -36,7 +36,8 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 			1,
 			10000,
 		);
-		camera.position.set(0, 355, 1220);
+		camera.position.set(0, 200, 1000);
+        camera.lookAt(scene.position);
 
 		const renderer = new THREE.WebGLRenderer({
 			alpha: true,
@@ -64,9 +65,8 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 
 				positions.push(x, y, z);
 				
-                // Make the balls orange like the reference photo (RGB 200, 80, 50)
-                // Using 0-1 scale for true Three.js Float32BufferAttribute
-                colors.push(200 / 255, 80 / 255, 50 / 255);
+                // Make the balls very bright orange (like #ff5a00)
+                colors.push(255 / 255, 90 / 255, 0 / 255);
 			}
 		}
 
@@ -78,10 +78,10 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 
 		// Create material
 		const material = new THREE.PointsMaterial({
-			size: 8,
+			size: 14,
 			vertexColors: true,
 			transparent: true,
-			opacity: 0.6,
+			opacity: 0.9,
 			sizeAttenuation: true,
 		});
 
@@ -174,7 +174,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 	return (
 		<div
 			ref={containerRef}
-			className={cn('pointer-events-none absolute inset-0 -z-0 opacity-100 mix-blend-screen', className)}
+			className={cn('pointer-events-none absolute inset-0 -z-0 opacity-100', className)}
 			{...props}
 		/>
 	);
