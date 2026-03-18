@@ -42,19 +42,9 @@ const Footer = () => {
               <li><a href="https://github.com/adervark/wLLM/blob/main/documentation/Architecture.md" target="_blank" rel="noopener noreferrer" className="text-sm text-white/60 hover:text-white transition-colors">Architecture</a></li>
               <li><a href="https://github.com/adervark/wLLM/blob/main/documentation/COMMANDS.md" target="_blank" rel="noopener noreferrer" className="text-sm text-white/60 hover:text-white transition-colors">CLI Reference</a></li>
               <li><a href="https://github.com/adervark/wLLM/blob/main/documentation/Genesys.md" target="_blank" rel="noopener noreferrer" className="text-sm text-white/60 hover:text-white transition-colors">Deep Dive</a></li>
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Community</a></li>
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-semibold text-white mb-6">Company</h4>
-            <ul className="space-y-4">
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Terms of Service</a></li>
-            </ul>
-          </div>
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
