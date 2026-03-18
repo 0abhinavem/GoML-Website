@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, Cpu, Zap, Blocks, Server, MemoryStick } from "lucide-react";
-import { Glow } from "./ui/glowing-effect";
+import { GlowingEffect } from "./ui/glowing-effect";
 
 const features = [
   {
@@ -89,7 +89,7 @@ const EngineSpecs = () => {
           >
             <div className="absolute -inset-0.5 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl blur-lg" />
             <div className="relative rounded-2xl border border-white/10 bg-[#0A0A0B]/90 backdrop-blur-xl p-8 overflow-hidden">
-              <Glow color="rgba(168, 85, 247, 0.15)" />
+              <GlowingEffect blur={0} spread={20} glow={true} inactiveZone={0.01} borderWidth={3} className="rounded-2xl" />
               
               <h3 className="text-2xl font-bold text-white mb-2">Supported Models</h3>
               <p className="text-white/60 text-sm mb-8">
