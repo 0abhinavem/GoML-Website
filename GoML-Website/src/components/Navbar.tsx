@@ -9,7 +9,7 @@ const navLinks = [
   { id: "demo", label: "Demo" },
   { id: "pricing", label: "Pricing" },
   { id: "docs", label: "Docs" },
-  { id: "about", label: "About" },
+  { id: "github", label: "GitHub" },
 ];
 
 const Navbar = () => {

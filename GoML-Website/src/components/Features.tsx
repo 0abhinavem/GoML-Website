@@ -1,28 +1,28 @@
 import { motion } from "framer-motion";
-import { Cpu, Lock, GitPullRequest, Zap } from "lucide-react";
+import { Cpu, Layers, Zap, Globe } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { FlickeringGrid } from "./ui/flickering-grid";
 
 const features = [
   {
-    title: "Context-Aware Generation",
-    description: "Our LLM understands your entire codebase context, not just single files, ensuring generated tests and code fit seamlessly.",
+    title: "4-bit & 8-bit Quantization",
+    description: "Run 7B+ parameter models on consumer GPUs with NF4 and INT8 quantization via bitsandbytes. Slash VRAM usage without sacrificing quality.",
     icon: <Cpu className="w-6 h-6 text-indigo-400" />,
   },
   {
-    title: "Automated PR Reviews",
-    description: "Catch bugs before they merge. GoLM analyzes pull requests in real-time, providing actionable feedback and auto-generating fixes.",
-    icon: <GitPullRequest className="w-6 h-6 text-purple-400" />,
+    title: "Continuous Batching",
+    description: "Serve multiple concurrent requests with iteration-level scheduling. Maximize GPU utilization and throughput automatically.",
+    icon: <Layers className="w-6 h-6 text-purple-400" />,
   },
   {
-    title: "Zero-Config Pipelines",
-    description: "Deploy faster with intelligent CI/CD generation. We analyze your project structure and build the perfect pipeline automatically.",
+    title: "Speculative Decoding",
+    description: "Accelerate generation 2–3× using a small draft model that predicts tokens ahead, then verifies with the main model in parallel.",
     icon: <Zap className="w-6 h-6 text-cyan-400" />,
   },
   {
-    title: "Privacy First",
-    description: "Your code is yours. Models run in isolated, secure environments, guaranteeing your proprietary logic never leaves your control.",
-    icon: <Lock className="w-6 h-6 text-emerald-400" />,
+    title: "OpenAI-Compatible API",
+    description: "Drop-in replacement for /v1/chat/completions — works with any OpenAI SDK, LangChain, or custom client out of the box.",
+    icon: <Globe className="w-6 h-6 text-emerald-400" />,
   },
 ];
 
@@ -46,7 +46,7 @@ const Features = () => {
             transition={{ duration: 0.6 }}
             className="font-display text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Built for the modern AI workflow
+            Engineered for Maximum Throughput
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ const Features = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/60 text-lg max-w-2xl mx-auto"
           >
-            Everything you need to automate your deployment pipeline, powered by intelligent context-aware language models.
+            Everything you need to run LLMs locally on Windows — fast, efficient, and OpenAI-compatible.
           </motion.p>
         </div>
 

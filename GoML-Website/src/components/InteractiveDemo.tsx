@@ -4,16 +4,16 @@ import { Terminal, Play, CheckCircle2 } from "lucide-react";
 
 const steps = [
   {
-    command: "golm init project",
-    output: "Scanning repository...\nAnalyzing dependencies...\nContext map generated successfully. (2.4s)",
+    command: 'winllm serve --model "microsoft/Phi-3-mini-4k-instruct" --quantization 4bit',
+    output: "Loading model...\nApplying NF4 quantization...\nKV cache allocated (2.1 GB)...\n✓ Server ready at http://localhost:8000",
   },
   {
-    command: "golm generate tests --target auth.ts",
-    output: "Analyzing auth.ts...\nGenerating unit tests based on edge cases...\nCreated __tests__/auth.test.ts (14 test cases)",
+    command: 'curl localhost:8000/v1/chat/completions -d \'{"model":"Phi-3","messages":[{"role":"user","content":"Hello!"}]}\'',
+    output: '{"choices":[{"message":{"content":"Hello! How can I help you today?"}}]}\nTokens/s: 42.3 | Latency: 234ms',
   },
   {
-    command: "golm review pr #42",
-    output: "Reviewing changes...\nIssue found: Potential SQL injection in user-query.ts.\nAuto-generating fix patch...\nPatch applied and pushed to branch.",
+    command: 'winllm benchmark --model "microsoft/Phi-3-mini-4k-instruct" --quantization 4bit',
+    output: "Running throughput benchmark...\nPrefill: 1,247 tok/s | Decode: 48.2 tok/s\nMemory: 4.1 GB VRAM | Peak: 5.8 GB",
   },
 ];
 
@@ -34,7 +34,7 @@ const InteractiveDemo = () => {
       const fullCommand = steps[currentStep].command;
       
       for (let i = 0; i <= fullCommand.length; i++) {
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise(resolve => setTimeout(resolve, 30));
         setDisplayedCommand(fullCommand.slice(0, i));
       }
       
@@ -43,7 +43,7 @@ const InteractiveDemo = () => {
         setShowOutput(true);
         setTimeout(() => {
           setCurrentStep((prev) => (prev + 1) % steps.length);
-        }, 3000);
+        }, 3500);
       }, 400);
     };
 
@@ -65,7 +65,7 @@ const InteractiveDemo = () => {
               viewport={{ once: true }}
               className="font-display text-4xl md:text-5xl font-bold text-white leading-tight"
             >
-              See how GoLM <br/><span className="gradient-text">automates the tedious parts</span>
+              See WinLLM <br/><span className="gradient-text">in action</span>
             </motion.h2>
             
             <motion.p 
@@ -75,7 +75,7 @@ const InteractiveDemo = () => {
               transition={{ delay: 0.2 }}
               className="text-white/60 text-lg leading-relaxed"
             >
-              Our CLI and integrations drop right into your existing workflow. Trigger AI-driven test generation, code reviews, and pipeline configurations with simple, intuitive commands.
+              From installation to your first API call in under 60 seconds. One CLI, zero configuration, instant inference.
             </motion.p>
             
             <motion.ul 
@@ -86,9 +86,9 @@ const InteractiveDemo = () => {
               className="space-y-4"
             >
               {[
-                "Analyzes full repository context automatically",
-                "Integrates with GitHub, GitLab, and Bitbucket",
-                "Runs locally or in secure cloud environments"
+                "Serves OpenAI-compatible API on localhost",
+                "Runs on 8 GB VRAM with 4-bit quantization",
+                "Built-in benchmarking and profiling tools"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-white/80">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400" />
@@ -114,21 +114,21 @@ const InteractiveDemo = () => {
               </div>
               <div className="flex-1 text-center flex justify-center items-center gap-2">
                  <Terminal className="w-4 h-4 text-white/40" />
-                 <span className="text-xs font-mono text-white/40">golm-cli</span>
+                 <span className="text-xs font-mono text-white/40">winllm-cli</span>
               </div>
             </div>
 
             {/* Terminal Body */}
-            <div className="p-6 h-[250px] font-mono text-sm bg-black/40">
-              <div className="flex items-center text-emerald-400 mb-2">
-                <span className="mr-2">~</span>
-                <span className="text-white/50 mr-2">$</span>
-                <span className="text-white">{displayedCommand}</span>
+            <div className="p-6 h-[280px] font-mono text-sm bg-black/40 overflow-hidden">
+              <div className="flex items-start text-emerald-400 mb-2">
+                <span className="mr-2 shrink-0">~</span>
+                <span className="text-white/50 mr-2 shrink-0">$</span>
+                <span className="text-white break-all">{displayedCommand}</span>
                 {isTyping && (
                   <motion.span
                     animate={{ opacity: [1, 0] }}
                     transition={{ repeat: Infinity, duration: 0.8 }}
-                    className="w-2 h-4 bg-white ml-1 inline-block"
+                    className="w-2 h-4 bg-white ml-1 inline-block shrink-0"
                   />
                 )}
               </div>

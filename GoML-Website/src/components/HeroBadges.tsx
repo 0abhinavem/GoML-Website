@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { Zap, Shield, Globe } from "lucide-react";
+import { Zap, Globe, Monitor } from "lucide-react";
 
 const badges = [
-  { label: "Integrated with", icon: Zap },
-  { label: "Integrated with", icon: Shield },
-  { label: "Integrated with", icon: Globe },
+  { label: "PyTorch + CUDA", icon: Zap },
+  { label: "OpenAI Compatible", icon: Globe },
+  { label: "Windows Native", icon: Monitor },
 ];
 
 const HeroBadges = () => {

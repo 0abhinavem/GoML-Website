@@ -21,7 +21,7 @@ const HeroContent = () => {
             speed={25}
             className="text-6xl md:text-[80px] font-bold leading-[0.95] tracking-tight"
           >
-            Where Innovation
+            Run Any LLM.
           </SpecialText>
           <br />
           <SpecialText
@@ -30,7 +30,7 @@ const HeroContent = () => {
             speed={25}
             className="text-6xl md:text-[80px] font-bold leading-[0.95] tracking-tight"
           >
-            Meets Execution
+            Natively on Windows.
           </SpecialText>
         </motion.h1>
 
@@ -40,9 +40,9 @@ const HeroContent = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto leading-relaxed"
         >
-          Streamline your testing and deployment pipeline with
+          The fastest Windows-native inference engine with OpenAI-compatible API,
           <br className="hidden md:block" />
-          intelligent automation that adapts to your workflow.
+          quantization, and speculative decoding — all on your consumer GPU.
         </motion.p>
 
         <motion.div
@@ -56,11 +56,11 @@ const HeroContent = () => {
               Get Started for Free
             </button>
           </Link>
-          <Link to="/signup">
+          <a href="https://github.com/adervark/wLLM" target="_blank" rel="noopener noreferrer">
             <button className="px-7 py-3 rounded-full text-sm font-medium glass-effect text-foreground hover:bg-[hsl(var(--glass-strong))] transition-colors">
-              Get Started
+              View on GitHub
             </button>
-          </Link>
+          </a>
         </motion.div>
       </div>
     </div>

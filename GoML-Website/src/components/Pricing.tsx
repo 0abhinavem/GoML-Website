@@ -3,59 +3,59 @@ import { FallingPattern } from "./ui/falling-pattern";
 
 const PLANS = [
   {
-    id: 'hobby',
-    name: 'Hobby',
-    info: 'Perfect for indie developers and small side projects.',
+    id: 'community',
+    name: 'Community',
+    info: 'Full engine access. Free forever for individuals and open-source projects.',
     price: {
       monthly: 0,
       yearly: 0,
     },
     features: [
-      { text: 'Up to 3 projects' },
-      { text: '100 AI Generation Requests / mo' },
-      { text: 'Community Support', tooltip: 'Get answers on Discord' },
-      { text: 'Standard LLM Models' },
+      { text: 'Full inference engine' },
+      { text: 'All quantization modes (NF4, INT8)' },
+      { text: 'Community Discord support' },
+      { text: 'GitHub Issues & Discussions' },
     ],
     btn: {
       text: 'Download Free',
-      href: '/signup',
+      href: 'https://github.com/adervark/wLLM',
     },
   },
   {
     highlighted: true,
-    id: 'pro',
-    name: 'Pro',
-    info: 'For professional developers and growing teams.',
+    id: 'developer',
+    name: 'Developer',
+    info: 'Priority support and optimizations for professional developers.',
     price: {
-      monthly: 29,
-      yearly: Math.round(29 * 12 * 0.8), // 20% discount
+      monthly: 19,
+      yearly: Math.round(19 * 12 * 0.8),
     },
     features: [
-      { text: 'Unlimited projects' },
-      { text: '1,000 AI Generation Requests / mo' },
-      { text: 'Advanced Context Mapping', tooltip: 'AI understands your entire repository' },
-      { text: 'Premium LLM Models', tooltip: 'Access to GPT-4 and Claude 3 Opus' },
-      { text: 'Priority Email Support' },
+      { text: 'Everything in Community' },
+      { text: 'Priority bug fixes & patches' },
+      { text: 'Private Slack channel', tooltip: 'Direct access to the engineering team' },
+      { text: 'Custom model optimization guides' },
+      { text: 'Email support (24h response)' },
     ],
     btn: {
-      text: 'Upgrade to Pro',
+      text: 'Upgrade to Developer',
       href: '#',
     },
   },
   {
     id: 'enterprise',
     name: 'Enterprise',
-    info: 'Dedicated support and infrastructure for large organizations.',
+    info: 'Dedicated engineering support and deployment assistance for teams.',
     price: {
-      monthly: 99,
-      yearly: Math.round(99 * 12 * 0.8), // 20% discount
+      monthly: 79,
+      yearly: Math.round(79 * 12 * 0.8),
     },
     features: [
-      { text: 'Unlimited Everything' },
-      { text: 'Custom Model Fine-tuning', tooltip: 'Train models on your proprietary codebase' },
-      { text: 'On-Premise Deployment Options', tooltip: 'Deploy on your own AWS/GCP infrastructure' },
-      { text: 'Dedicated Account Manager' },
-      { text: 'SLA & 24/7 Phone Support' },
+      { text: 'Everything in Developer' },
+      { text: 'Dedicated support engineer' },
+      { text: 'On-premise deployment assistance', tooltip: 'Help deploying on your infrastructure' },
+      { text: 'Custom fine-tuning pipeline setup' },
+      { text: 'SLA & 24/7 phone support' },
     ],
     btn: {
       text: 'Contact Sales',
@@ -79,8 +79,8 @@ const Pricing = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <PricingSection
           plans={PLANS}
-          heading="Simple, transparent pricing"
-          description="No hidden fees. No surprise charges. Scale your automated pipeline with confidence."
+          heading="Open Source. Premium Support Available."
+          description="WinLLM is free and open source. For teams that need more, we offer professional support tiers."
         />
       </div>
     </section>
