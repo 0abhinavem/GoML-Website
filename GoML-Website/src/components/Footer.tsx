@@ -31,7 +31,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li><a href="#features" className="text-sm text-white/60 hover:text-white transition-colors">Features</a></li>
               <li><a href="#demo" className="text-sm text-white/60 hover:text-white transition-colors">How it Works</a></li>
-              <li><a href="#pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="#specs" className="text-sm text-white/60 hover:text-white transition-colors">Specs & Models</a></li>
               <li><a href="https://github.com/adervark/wLLM/releases" target="_blank" rel="noopener noreferrer" className="text-sm text-white/60 hover:text-white transition-colors">Releases</a></li>
             </ul>
           </div>

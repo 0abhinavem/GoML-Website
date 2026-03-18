@@ -4,7 +4,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 import LogoMarquee from "@/components/LogoMarquee";
 import Features from "@/components/Features";
 import InteractiveDemo from "@/components/InteractiveDemo";
-import Pricing from "@/components/Pricing";
+import EngineSpecs from "@/components/EngineSpecs";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -23,7 +23,7 @@ const Index = () => {
         <LogoMarquee />
         <Features />
         <InteractiveDemo />
-        <Pricing />
+        <EngineSpecs />
         <Footer />
       </section>
     </div>
