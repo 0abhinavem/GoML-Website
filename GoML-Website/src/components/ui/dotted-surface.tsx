@@ -65,8 +65,8 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 
 				positions.push(x, y, z);
 				
-                // Make the balls very bright orange (like #ff5a00)
-                colors.push(255 / 255, 90 / 255, 0 / 255);
+                // Match the deep crimson/maroon from the new reference photo
+                colors.push(120 / 255, 35 / 255, 35 / 255);
 			}
 		}
 
@@ -116,7 +116,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 			positionAttribute.needsUpdate = true;
 
 			renderer.render(scene, camera);
-			count += 0.05; // Slightly slower more sophisticated wave motion
+			count += 0.15; // Increased speed from 0.05 to 0.15 for a faster wave
 		};
 
 		// Handle window resize
