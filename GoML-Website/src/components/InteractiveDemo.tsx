@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Play, CheckCircle2 } from "lucide-react";
+import { DottedSurface } from "./ui/dotted-surface";
 
 const steps = [
   {
@@ -53,8 +54,9 @@ const InteractiveDemo = () => {
   }, [currentStep]);
 
   return (
-    <section id="demo" className="relative py-24 z-10">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="demo" className="relative py-24 z-10 overflow-hidden">
+      <DottedSurface className="absolute inset-0 w-full h-full mix-blend-screen opacity-50" />
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left Text Side */}
