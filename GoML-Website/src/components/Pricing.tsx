@@ -17,8 +17,8 @@ const PLANS = [
       { text: 'Standard LLM Models' },
     ],
     btn: {
-      text: 'Start for Free',
-      href: '#',
+      text: 'Download Free',
+      href: '/signup',
     },
   },
   {

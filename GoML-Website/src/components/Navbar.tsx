@@ -6,10 +6,10 @@ import { LimelightNav } from "./ui/limelight-nav";
 
 const navLinks = [
   { id: "features", label: "Features" },
-  { id: "insights", label: "Insights" },
+  { id: "demo", label: "Demo" },
+  { id: "pricing", label: "Pricing" },
+  { id: "docs", label: "Docs" },
   { id: "about", label: "About" },
-  { id: "case-studies", label: "Case Studies" },
-  { id: "contact", label: "Contact" },
 ];
 
 const Navbar = () => {

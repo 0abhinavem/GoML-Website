@@ -11,7 +11,7 @@ const Footer = () => {
               GoLM
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-6">
-              The intelligent automation platform for modern deployment pipelines. Ship faster, catch bugs earlier, and automate with confidence.
+              The fastest Windows-native LLM inference engine. Open source, OpenAI-compatible, and built for consumer GPUs.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors">
@@ -32,16 +32,16 @@ const Footer = () => {
               <li><a href="#features" className="text-sm text-white/60 hover:text-white transition-colors">Features</a></li>
               <li><a href="#demo" className="text-sm text-white/60 hover:text-white transition-colors">How it Works</a></li>
               <li><a href="#pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Changelog</a></li>
+              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Releases</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold text-white mb-6">Resources</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">API Reference</a></li>
-              <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#features" className="text-sm text-white/60 hover:text-white transition-colors">Architecture</a></li>
+              <li><a href="#demo" className="text-sm text-white/60 hover:text-white transition-colors">CLI Reference</a></li>
+              <li><a href="#demo" className="text-sm text-white/60 hover:text-white transition-colors">Deep Dive</a></li>
               <li><a href="#" className="text-sm text-white/60 hover:text-white transition-colors">Community</a></li>
             </ul>
           </div>
