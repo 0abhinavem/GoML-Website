@@ -1,10 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { clsx } from 'clsx'
+import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
-export function cn(...inputs: any[]) { return twMerge(clsx(inputs)) }
+export function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)) }
 
 type Direction = 'TOP' | 'LEFT' | 'BOTTOM' | 'RIGHT'
 
