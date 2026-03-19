@@ -16,7 +16,7 @@ const VideoPlayer = memo(({ videoSrc = "/videos/luminance_11_4k.mp4" }: VideoPla
         loop
         muted
         playsInline
-        src={videoSrc}
+        src={`${import.meta.env.BASE_URL}${videoSrc.startsWith('/') ? videoSrc.slice(1) : videoSrc}`}
       />
       <div className="absolute inset-0 bg-background/10" />
     </div>
