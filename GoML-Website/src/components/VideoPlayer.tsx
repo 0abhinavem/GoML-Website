@@ -7,6 +7,16 @@ interface VideoPlayerProps {
 const VideoPlayer = memo(({ videoSrc = "/videos/luminance_11_4k.mp4" }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((error) => {
+        console.warn("Video autoplay failed:", error);
+      });
+    }
+  }, []);
+
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none bg-black">
       <video
