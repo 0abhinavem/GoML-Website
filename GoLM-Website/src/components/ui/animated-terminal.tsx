@@ -91,7 +91,7 @@ export function AnimatedTerminal() {
        <div className="p-4 md:p-6 font-mono text-xs md:text-sm leading-relaxed overflow-x-auto w-full min-h-[300px]">
           <div className="min-w-[650px] space-y-3">
              {step >= 1 ? (
-               <div className="text-gray-400 animate-fade-in"><span className="text-green-400 font-bold">PS C:\\Dev&gt;</span> winllm serve --model "Qwen2.5-7B" --quantization 4bit --port 8000</div>
+               <div className="text-gray-400 animate-fade-in"><span className="text-green-400 font-bold">PS C:\\Dev&gt;</span> winllm serve --model "Qwen2.5-7B" --quantization 4bit</div>
              ) : (
                <div className="text-gray-400"><span className="text-green-400 font-bold">PS C:\\Dev&gt;</span><span className="animate-pulse">_</span></div>
              )}
@@ -109,7 +109,7 @@ export function AnimatedTerminal() {
              )}
              
              {step >= 6 && <div className="text-cyan-400 animate-fade-in">[INFO] <span className="text-gray-300">Warming up CUDA Graphs... [OK]</span></div>}
-             {step >= 7 && <div className="text-emerald-400 mt-2 animate-fade-in">[SUCCESS] <span className="text-white font-bold">API Server running at http://0.0.0.0:8000</span></div>}
+             {step >= 7 && <div className="text-emerald-400 mt-2 animate-fade-in">[SUCCESS] <span className="text-white font-bold">API Server running at https://api.winllm.dev</span></div>}
           </div>
        </div>
     </div>

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Cpu, Layers, Zap, Globe } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { FlickeringGrid } from "./ui/flickering-grid";
@@ -8,25 +9,31 @@ const features = [
     title: "4-bit & 8-bit Quantization",
     description: "Run 7B+ parameter models on consumer GPUs with NF4 and INT8 quantization via bitsandbytes. Slash VRAM usage without sacrificing quality.",
     icon: <Cpu className="w-6 h-6 text-indigo-400" />,
+    link: "/info/specs",
   },
   {
     title: "Continuous Batching",
     description: "Serve multiple concurrent requests with iteration-level scheduling. Maximize GPU utilization and throughput automatically.",
     icon: <Layers className="w-6 h-6 text-purple-400" />,
+    link: "/info/architecture",
   },
   {
     title: "Speculative Decoding",
     description: "Accelerate generation 2–3× using a small draft model that predicts tokens ahead, then verifies with the main model in parallel.",
     icon: <Zap className="w-6 h-6 text-cyan-400" />,
+    link: "/info/deep-dive",
   },
   {
     title: "OpenAI-Compatible API",
     description: "Drop-in replacement for /v1/chat/completions — works with any OpenAI SDK, LangChain, or custom client out of the box.",
     icon: <Globe className="w-6 h-6 text-emerald-400" />,
+    link: "/info/cli",
   },
 ];
 
 const Features = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="features" className="relative py-24 z-10 border-t border-white/5 overflow-hidden">
       <FlickeringGrid
@@ -67,7 +74,8 @@ const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="min-h-[14rem]"
+              className="min-h-[14rem] cursor-pointer"
+              onClick={() => navigate(feature.link)}
             >
               <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
                 <GlowingEffect
@@ -92,6 +100,9 @@ const Features = () => {
                       </p>
                     </div>
                   </div>
+                  <div className="flex items-center gap-1 text-xs text-white/30 group-hover:text-white/60 transition-colors">
+                    <span>Learn more →</span>
+                  </div>
                 </div>
               </div>
             </motion.li>
@@ -103,4 +114,3 @@ const Features = () => {
 };
 
 export default Features;
-

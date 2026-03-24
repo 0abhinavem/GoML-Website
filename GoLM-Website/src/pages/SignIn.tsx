@@ -31,7 +31,7 @@ const SignIn = () => {
               Welcome back
             </h1>
             <p className="text-white/80 text-lg leading-relaxed max-w-md">
-              Sign in to your GoLM account to continue where you left off and manage your workspace.
+              Sign in to your wLLM account to continue where you left off and manage your workspace.
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Download } from "lucide-react";
 import HeroBadges from "./HeroBadges";
 import { SpecialText } from "./ui/special-text";
 
@@ -51,11 +51,12 @@ const HeroContent = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="flex items-center justify-center gap-4 flex-wrap"
         >
-          <Link to="/signup">
-            <button className="px-7 py-3 rounded-full text-sm font-medium bg-background text-foreground border border-foreground/20 hover:border-foreground/40 transition-colors">
-              Get Started for Free
+          <a href="https://github.com/adervark/wLLM/releases/tag/v1.0" target="_blank" rel="noopener noreferrer">
+            <button className="px-7 py-3 rounded-full text-sm font-medium bg-white text-black hover:bg-white/90 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)] flex items-center gap-2">
+              <Download className="w-4 h-4" />
+              Download v1.0
             </button>
-          </Link>
+          </a>
           <a href="https://github.com/adervark/wLLM" target="_blank" rel="noopener noreferrer">
             <button className="px-7 py-3 rounded-full text-sm font-medium glass-effect text-foreground hover:bg-[hsl(var(--glass-strong))] transition-colors">
               View on GitHub
@@ -68,3 +69,4 @@ const HeroContent = () => {
 };
 
 export default HeroContent;
+

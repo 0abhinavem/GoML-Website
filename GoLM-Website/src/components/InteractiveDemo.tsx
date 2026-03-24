@@ -6,10 +6,10 @@ import { DottedSurface } from "./ui/dotted-surface";
 const steps = [
   {
     command: 'winllm serve --model "microsoft/Phi-3-mini-4k-instruct" --quantization 4bit',
-    output: "Loading model...\nApplying NF4 quantization...\nKV cache allocated (2.1 GB)...\n✓ Server ready at http://localhost:8000",
+    output: "Loading model...\nApplying NF4 quantization...\nKV cache allocated (2.1 GB)...\n✓ Server ready at https://api.winllm.dev",
   },
   {
-    command: 'curl localhost:8000/v1/chat/completions -d \'{"model":"Phi-3","messages":[{"role":"user","content":"Hello!"}]}\'',
+    command: 'curl https://api.winllm.dev/v1/chat/completions -d \'{"model":"Phi-3","messages":[{"role":"user","content":"Hello!"}]}\'',
     output: '{"choices":[{"message":{"content":"Hello! How can I help you today?"}}]}\nTokens/s: 42.3 | Latency: 234ms',
   },
   {
@@ -88,7 +88,7 @@ const InteractiveDemo = () => {
               className="space-y-4"
             >
               {[
-                "Serves OpenAI-compatible API on localhost",
+                "Serves OpenAI-compatible API on your machine",
                 "Runs on 8 GB VRAM with 4-bit quantization",
                 "Built-in benchmarking and profiling tools"
               ].map((item, i) => (

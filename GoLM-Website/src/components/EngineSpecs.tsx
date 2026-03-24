@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Cpu, Zap, Blocks, Server, MemoryStick, Terminal, Copy } from "lucide-react";
+import { Cpu, Zap, Blocks, Server, MemoryStick } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 
 const features = [
@@ -39,22 +39,10 @@ const models = [
   { name: "Phi-3-mini-4k-instruct", size: "3.8B", quant: "float16", vram: "~7.5 GB", speed: "90 tok/s" },
 ];
 
-const commands = [
-  { label: "Install", cmd: "uv pip install -e . --extra-index-url https://download.pytorch.org/whl/cu124" },
-  { label: "Terminal Chat", cmd: "winllm chat --model \"microsoft/Phi-3-mini-4k-instruct\" --quantization 4bit" },
-  { label: "Start API Server", cmd: "winllm serve --model \"microsoft/Phi-3-mini-4k-instruct\" --port 8000" },
-  { label: "Run Inference", cmd: "curl http://localhost:8000/v1/chat/completions -d '{\"model\": \"Phi-3-mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello!\"}]}'" }
-];
+
 
 const EngineSpecs = () => {
   const [activeTab, setActiveTab] = useState("Architecture");
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-
-  const handleCopy = (text: string, index: number) => {
-    navigator.clipboard.writeText(text);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
-  };
 
   return (
     <section id="specs" className="relative py-24 z-10 overflow-hidden">
@@ -80,7 +68,7 @@ const EngineSpecs = () => {
         {/* Interactive Interactive Tabs */}
         <div className="flex justify-center mb-12">
           <div className="inline-flex bg-white/5 border border-white/10 rounded-full p-1 backdrop-blur-xl transition-all">
-            {["Architecture", "Benchmarks", "Integration"].map((tab) => (
+            {["Architecture", "Benchmarks"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -167,39 +155,7 @@ const EngineSpecs = () => {
               </motion.div>
             )}
 
-            {/* TAB 3: INTEGRATION */}
-            {activeTab === "Integration" && (
-              <motion.div
-                key="Integration"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-4"
-              >
-                {commands.map((cmd, i) => (
-                  <div key={i} className="bg-[#0A0A0B] border border-white/10 rounded-xl overflow-hidden group">
-                    <div className="bg-white/5 border-b border-white/10 px-4 py-2 flex justify-between items-center">
-                      <div className="flex items-center gap-2">
-                        <Terminal className="w-4 h-4 text-white/40" />
-                        <span className="text-xs font-semibold text-white/60 uppercase tracking-wider">{cmd.label}</span>
-                      </div>
-                      <button 
-                        onClick={() => handleCopy(cmd.cmd, i)}
-                        className="text-white/40 hover:text-white transition-colors p-1"
-                      >
-                        {copiedIndex === i ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                      </button>
-                    </div>
-                    <div className="p-4 overflow-x-auto">
-                      <code className="text-sm font-mono text-purple-300 whitespace-nowrap">
-                        {cmd.cmd}
-                      </code>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            )}
+
           </AnimatePresence>
         </div>
       </div>

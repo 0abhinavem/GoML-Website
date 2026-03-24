@@ -444,7 +444,7 @@ interface PromptInputBoxProps {
   className?: string;
 }
 export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref: React.Ref<HTMLDivElement>) => {
-  const { onSend = () => {}, isLoading = false, placeholder = "Ask GoLM...", className } = props;
+  const { onSend = () => {}, isLoading = false, placeholder = "Ask wLLM...", className } = props;
   const [input, setInput] = React.useState("");
   const [files, setFiles] = React.useState<File[]>([]);
   const [filePreviews, setFilePreviews] = React.useState<{ [key: string]: string }>({});

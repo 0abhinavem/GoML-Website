@@ -1,4 +1,4 @@
-const logos: string[] = [];
+const logos: string[] = ["PyTorch", "CUDA", "HuggingFace", "Windows", "Python", "OpenAI"];
 
 const LogoMarquee = () => {
   return (
@@ -18,3 +18,4 @@ const LogoMarquee = () => {
 };
 
 export default LogoMarquee;
+

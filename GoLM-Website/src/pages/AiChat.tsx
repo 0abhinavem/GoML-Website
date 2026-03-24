@@ -105,7 +105,7 @@ const AiChat = () => {
               </button>
             )}
             <div className="flex items-center gap-2">
-              <span className="font-display font-semibold text-xl tracking-tight text-gray-900 drop-shadow-sm">GoLM</span>
+              <span className="font-display font-semibold text-xl tracking-tight text-gray-900 drop-shadow-sm">wLLM</span>
               <ChevronDown className="w-4 h-4 text-gray-700 cursor-pointer" />
             </div>
           </div>
@@ -134,7 +134,7 @@ const AiChat = () => {
                 Hi Abhinave
               </h2>
               <h1 className="text-5xl md:text-6xl font-display font-medium text-gray-800 tracking-tight drop-shadow-sm">
-                How can GoLM help today?
+                How can wLLM help today?
               </h1>
             </motion.div>
             

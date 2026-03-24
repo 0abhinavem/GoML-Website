@@ -1,18 +1,39 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import SearchComponent from "./ui/animated-glowing-search-bar";
-import { GradientButton } from "./ui/gradient-button";
+import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { LimelightNav } from "./ui/limelight-nav";
+import { Menu, X } from "lucide-react";
 
-const navLinks = [
-  { id: "features", label: "Features" },
-  { id: "demo", label: "Demo" },
-  { id: "specs", label: "Specs & Models" },
-  { id: "docs", label: "Docs" },
-  { id: "github", label: "GitHub" },
-];
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleSectionClick = (sectionId: string) => {
+    setMobileOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => scrollToSection(sectionId), 300);
+    } else {
+      scrollToSection(sectionId);
+    }
+  };
+
+  const navLinks = [
+    { id: "features", label: "Features", onClick: () => handleSectionClick("features") },
+    { id: "demo", label: "Demo", onClick: () => handleSectionClick("demo") },
+    { id: "specs", label: "Specs & Models", onClick: () => handleSectionClick("specs") },
+    { id: "docs", label: "Docs", onClick: () => { setMobileOpen(false); navigate("/docs"); } },
+    { id: "github", label: "GitHub", onClick: () => { setMobileOpen(false); window.open("https://github.com/adervark/wLLM", "_blank"); } },
+  ];
+
   return (
     <motion.nav
       initial={{ y: -20, opacity: 0 }}
@@ -22,31 +43,45 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <span className="font-display font-medium tracking-tight text-foreground text-xl cursor-pointer">
-          <Link to="/">GoLM</Link>
+          <Link to="/">wLLM</Link>
         </span>
 
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center">
           <LimelightNav items={navLinks} className="h-full bg-transparent border-none" iconContainerClassName="px-6 py-4" />
         </div>
 
-        <div className="flex items-center gap-6 md:gap-12 lg:gap-16">
-          <div className="hidden md:block scale-90 origin-right">
-            <SearchComponent />
-          </div>
-          <div className="flex items-center gap-3">
-            <Link to="/signin">
-              <GradientButton className="rounded-full min-w-0 px-5 py-2 text-sm font-display font-medium">
-                Sign In
-              </GradientButton>
-            </Link>
-            <Link to="/signup">
-              <GradientButton variant="variant" className="rounded-full min-w-0 px-5 py-2 text-sm font-display font-medium">
-                Sign Up
-              </GradientButton>
-            </Link>
-          </div>
-        </div>
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-xl"
+        >
+          <div className="px-6 py-4 space-y-1">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={link.onClick}
+                className="block w-full text-left px-4 py-3 text-sm font-display text-white/80 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </motion.nav>
   );
 };

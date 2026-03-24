@@ -31,7 +31,7 @@ const SignUp = () => {
               Let's Get Started
             </h1>
             <p className="text-white/80 text-lg leading-relaxed max-w-md">
-              Get started with GoLM for free and unlock the full potential of your workspace.
+              Get started with wLLM for free and unlock the full potential of your workspace.
             </p>
           </div>
         </div>

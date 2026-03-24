@@ -17,6 +17,7 @@ const Footer = () => {
     {
       title: "Resources",
       links: [
+        { label: "Documentation", href: "/docs" },
         { label: "Architecture", href: "/info/architecture" },
         { label: "CLI Reference", href: "/info/cli" },
         { label: "Deep Dive", href: "/info/deep-dive" },
@@ -37,7 +38,7 @@ const Footer = () => {
               <span className="text-[#7A1F1F] text-3xl font-extrabold mb-1">
                 &hearts;
               </span>
-              <span className="text-white text-3xl font-display font-bold tracking-tight">GoLM</span>
+              <span className="text-white text-3xl font-display font-bold tracking-tight">wLLM</span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               The fastest Windows-native LLM inference engine. Open source, OpenAI-compatible, and built for consumer GPUs.
@@ -55,8 +56,6 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="text-gray-400 text-sm hover:text-[#7A1F1F] transition-colors"
                     >
                       {link.label}
@@ -99,7 +98,7 @@ const Footer = () => {
 
       {/* Massive Text hover effect Background Layer */}
       <div className="lg:flex hidden absolute bottom-0 inset-x-0 h-[26rem] pointer-events-none opacity-80 mix-blend-screen z-10 w-full transform translate-y-[25%]">
-        <TextHoverEffect text="GoLM" className="pointer-events-auto" />
+        <TextHoverEffect text="wLLM" className="pointer-events-auto" />
       </div>
     </footer>
   );
